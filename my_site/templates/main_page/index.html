@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Store</title>
+    <link rel="stylesheet" href="{% static 'css/style-white.css' %}" id="theme-link">
+    <link rel="shortcut icon" href="{% static 'images/logo-for-white.png' %}" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@400;700&display=swap">
+    <script type="text/javascript" src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+</head>
+<body>
+
+    {% include "include/header.html" %}
+
+    <div class="container">
+        <div class="bg-rotate"></div>
+        <div class="left-menu">
+            <div class="main-rotate-circle">
+                {% for cat in categories %}
+                    <div class="mrc-item" id="mrc-{{forloop.counter}}"><img src='{{ cat.image.url }}' alt=""></div>
+                {% endfor %} 
+            </div>
+            <div class="blur-rotate-circle">
+                {% for cat in categories %}
+                    <div class="blur-mrc-item" id="blur-mrc-{{forloop.counter}}"><img src="{{ cat.image.url }}" alt=""></div>
+                {% endfor %} 
+            </div>
+        </div>
+
+        <div class="right-menu">
+            {% for t in top %}
+                <div class="sub-mrc">
+                    {% for i in t %}
+                    <div class="slide-item">
+                        <img src="{{ i.image.url }}" alt="">
+                        <div class="slide-item-text">
+                            <b>{{i.name}}</b>
+                            <p>{{i.description}}</p>
+                            <b>{{i.price}}</b>
+                        </div>
+                     </div>
+                    {%endfor%}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="menu">
+            <button class="btn" id="back"><img src="{% static 'images/arrow_left.png' %}" alt=""></button>
+            <button class="btn" id="shop"> <a href="shop/">SHOP</a> </button>
+            <button class="btn" id="next"><img src="{% static 'images/arrow_right.png' %}" alt=""></button>
+        </div>
+    </div>
+    
+    <script src="{% static 'js/script.js' %}"></script>
+   
+</body>
+</html>
